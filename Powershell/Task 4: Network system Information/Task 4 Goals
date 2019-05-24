@@ -1,0 +1,25 @@
+1. Search the network and find all the machines that have winrm enabled.
+
+2. Display all the machines that have winrm enabled in a gui (out-gridview)
+
+3. Let users select the computers they want and pass that information back to powershell (-passthru)
+
+4. Once the machines have been selected show the information for each machine in a gui for users to inspect
+
+5. When the task is completed and information has been shown, ask the user if they would like to either:
+	a) Find new machines
+	b) Exit
+	c) run a query on the remote machines
+
+6. If the users would like to run a query on the remote machines, prompt with gui/text editor to write script to pass through to the remote machines
+	a)show the results of the query on each machine in a gui
+	b)ask to Find new machines or exit
+
+	Bonus:
+	a) ask for a file to be used for the scipt instead of having to write it out
+	b) ask to run the script of additional machines
+	c) review other information while scripts are running
+
+Notes:
+	Use functions for EVERYTHING
+	Run things in the background while waiting
