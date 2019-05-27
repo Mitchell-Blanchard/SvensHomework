@@ -1,22 +1,41 @@
-#Get-NetIPAddress -IPAddress 
-#Test-WSMan -ComputerName 192.168.43.23
-#$?
+Stop-Job *
+Remove-Job *
 
+$WinRMEnabledComputers = @()
 $NetworkComputers = Get-NetNeighbor -AddressFamily IPv4
 
 foreach ($Computer in $NetworkComputers.IPAddress) {
+    start-job -ScriptBlock {Param($Computer)
 
-echo "$Computer"
+    Test-WSMan -ErrorAction SilentlyContinue -ComputerName $Computer
 
-start-job -scriptblock {Test-WSMan -ErrorAction SilentlyContinue -ComputerName 255.255.215.123}
+    $WinRMEnabled = $?
+    $Results = @{}
+    $Results.Add("$Computer","$WinRMEnabled")
+    $Results
 
+    } -ArgumentList "$Computer"
 }
 
-#Internal Networks
-# 10.0.0.0 - 10.255.255.255
-# 172.16.0.0 - 172.31.255.255
-# 192.168.0.0 - 192.168.255.255
+$BackgroundJobs = Get-Job
 
+while ($BackgroundJobs.command -like "Param*") {
 
+    $BackgroundJobs = get-job
 
-#WORKING 10.175.33.182
+    if ($BackgroundJobs.state -contains "Completed") {
+        
+        $CompletedJob = get-job -state Completed
+        $JobResults = Receive-Job -keep -id $CompletedJob.Id
+
+        if ($JobResults.Values -like "*False*") {
+
+            $WinRMEnabledComputers += $JobResults.Keys
+            
+        }
+        Remove-Job -Id $CompletedJob.Id
+        
+    }
+}
+
+$WinRMEnabledComputers

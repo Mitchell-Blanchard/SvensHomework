@@ -1,0 +1,4 @@
+1. Output background job to variable from a background job without having to receive job
+	This is to stop from having to make another script to interact with the completed jobs
+	
+2. 
