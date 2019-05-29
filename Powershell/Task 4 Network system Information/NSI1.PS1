@@ -28,7 +28,7 @@ while ($BackgroundJobs.command -like "Param*") {
         $CompletedJob = get-job -state Completed
         $JobResults = Receive-Job -keep -id $CompletedJob.Id
 
-        if ($JobResults.Values -like "*False*") {
+        if ($JobResults.Values -like "*True*") {
 
             $WinRMEnabledComputers += $JobResults.Keys
             
