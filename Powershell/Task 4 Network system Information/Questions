@@ -1,4 +1,7 @@
-1. Output background job to variable from a background job without having to receive job
-	This is to stop from having to make another script to interact with the completed jobs
-	
-2. 
+1. How to name the columns in the out-gridview
+
+2. Whats is ADSI and WinNT
+
+3. Best way for optimisation
+
+4. Other ways to work asyncronasly
