@@ -26,3 +26,6 @@ Notes:
 
 	Use for resource gathering:
 		https://www.sconstantinou.com/get-remote-system-information-part-1/
+	Single connection per PC and get multiple resources at once.
+	This will allow for fewer connections 
+		https://mikefrobbins.com/2017/04/27/powershell-one-liner-to-query-multiple-wmi-classes-with-a-cim-session/
