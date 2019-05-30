@@ -1,0 +1,2 @@
+$ComputerRAM = Write-Host "$(((Get-CimInstance -Class Win32_PhysicalMemory -ComputerName $ComputerName).Capacity | measure-object -Sum).Sum/1GB)GB"
+$ComputerHDD = (Get-CimInstance -Class Win32_DiskDrive -ComputerName $ComputerName) | select Caption, Size | Where -property Size -NE $null
