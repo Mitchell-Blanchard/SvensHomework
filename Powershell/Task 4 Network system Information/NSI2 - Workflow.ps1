@@ -1,4 +1,4 @@
-﻿$ComputerInfo = @()
+﻿
 
 workflow Test-WinRM {
     param($NetworkComputers)
@@ -45,3 +45,14 @@ function ComputerConnections {
     }
 
 }
+
+ComputerConnections
+
+$buttons =@{1 = "Run commands on above computers"; 2 = "Reselect computers"}
+
+($ComputerInfo | Where "CPU" -ne $null) + ($buttons) | Out-GridView
+
+$command = (@(While($l=(Read-Host).Trim()){$l}) -join("`n"))
+    
+Invoke-Command -ArgumentList $command -scriptblock {invoke-expression $command}
+
