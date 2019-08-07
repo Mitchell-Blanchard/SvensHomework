@@ -4,7 +4,8 @@ new-object System.Windows.Forms.Form  1 window
 .text
 .height
 .width
-.AutoSize = ture
+.AutoSize = true
+.Controls.Add
 .ShowDialog()
 
 
