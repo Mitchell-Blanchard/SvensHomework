@@ -48,7 +48,7 @@ ldd shows a binarys librarys that are loaded
   
 questions
   meaning of different colours of files
-    Blue
-    teal
-    green
+    Blue - directories
+    teal - symlinks
+    green - executables
     red
