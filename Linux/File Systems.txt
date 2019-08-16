@@ -1,0 +1,54 @@
+/boot - basic files to execute the kernal
+  grub - linux boot loader
+ bios > drives > MBR > Grub > Kernal > OS
+ 
+ 
+ 
+/dev (devices) - has the devices of the computer
+  Drives
+  Peripherals
+  Memory
+  USBs
+  random - makes random data, can be used for seeding
+  
+
+
+/etc - used for config files of the systems and programs
+  passwd - users
+  groups
+  shadow - encrypted passwords
+  cron for the system and services
+  sysconfig - centso - systems configurations
+  
+  
+  
+/sysctl.conf current system config
+  startup config is in /etc
+  
+  
+/sbin + /usr/bin - system binarys - executables
+/bin + /usr/bin - user binarys - executables
+  
+  
+  
+opt + /var/opt - optional software packages
+  
+  
+  
+/proc - sudo file system currently running processors  
+  
+  
+  
+  
+  
+ldd shows a binarys librarys that are loaded
+  
+  
+  
+  
+questions
+  meaning of different colours of files
+    Blue
+    teal
+    green
+    red
