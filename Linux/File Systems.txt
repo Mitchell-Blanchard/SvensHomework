@@ -19,6 +19,7 @@
   shadow - encrypted passwords
   cron for the system and services
   sysconfig - centso - systems configurations
+  nsswitch.conf - 
   
   
   
@@ -38,7 +39,28 @@ opt + /var/opt - optional software packages
 /proc - sudo file system currently running processors  
   
   
+/tmp - stores files for current programs
+      cleared every reboot
+      
+/usr - users binarys
+  lib - librarys (like DLL) 32bit
+  lib64 - librarys (like DLL) 64bit
+  bin - librarys you run
+  include - .h (header file) files of librarys
+  source - put source code here to be compiled
+  share - resources for applications, templates for documents
   
+/var - logs, spool, processID files all end up here
+  lock - used to stop files from being opened again
+  db - stored flatfile databases
+  log - holds logs
+    syslog or messages - main centos logging
+    dmessage - log of last boot
+    maillog (maybe /var/log/mailer) - mailer logs
+    lastlog - holds last logins: cant be viewed, need to use last command
+    spooler - print que
+    secure - logs ssh and sudo logins
+    sssd - daemon for directory systems, connects to ldap, AS, ect...
   
   
 ldd shows a binarys librarys that are loaded
@@ -46,9 +68,46 @@ ldd shows a binarys librarys that are loaded
   
   
   
-questions
-  meaning of different colours of files
-    Blue - directories
-    teal - symlinks
-    green - executables
-    red
+
+  
+  
+  
+  
+  
+  
+  
+boot: /usr/lib/systemd/system or /etc/systemd/system
+  handled by systemd, used to be handled by init
+  
+  systemd:
+    systemd handles dependancys
+    handles when things should start and stop
+    handles cron
+    systemd has a dependancy tree of all startup services and will start things in an order of those dependancy
+
+  config files [value] everything under it is for it until the next value is declared. works as a key value pair.
+
+  [unit]
+  what it needs
+
+  [service]
+  how the services acts
+
+  [install]
+  what it triggers
+  
+  nice level
+    0-20 process priority
+    0 starts every opporunity
+    20 starts when nothing else is running
+    
+  /Boot
+    kernal modules are held in /lib/modules/...../kernal/
+    .ko is a kernal object
+    modprobe - can be used to find kernal modules
+    lsmod - show all kernal modules currently loaded
+     
+  network interfaces are tied to a kernal modules
+    the name of these interfaces are changed for user readability
+    there is a file that has the original names
+    you need these original names to find out what modules they are using
